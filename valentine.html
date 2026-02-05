@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valentine 💚</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#1e2a78,#3949ab);
+        }
+
+        .card {
+            background: #ffe4e6;
+            width: 350px;
+            height: 280px;
+            border-radius: 15px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        .cat {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            position: relative;
+            height: 120px;
+        }
+
+        button {
+            border: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+        }
+
+        /* GREEN BUTTON */
+        .yes-btn {
+            background: #4caf50;
+            width: 120px;
+            height: 50px;
+            left: 30px;
+            bottom: 20px;
+        }
+
+        /* RED BUTTON */
+        .no-btn {
+            background: #f44336;
+            width: 120px;
+            height: 50px;
+            right: 30px;
+            bottom: 20px;
+        }
+
+        /* FINAL MESSAGE SCREEN */
+        .final {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #4caf50;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            justify-content: center;
+            align-items: center;
+        }
+        .sticker {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+}
+.final {
+    display: none; /* dapat hidden muna */
+
+    position: fixed;
+    inset: 0;
+    background: #4caf50;
+    color: white;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+    </style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <h2>Will you be my Valentine's?</h2>
+    <img src="bear-cute-bear.gif" class="sticker">
+
+    <div class="buttons">
+        <button class="yes-btn" id="yesBtn" onclick="sayYes()">Yes</button>
+        <button class="no-btn" id="noBtn" onclick="shrinkRed()">No</button>
+    </div>
+</div>
+
+<!-- Final Screen -->
+<div class="final" id="finalScreen">
+  <img src="love.gif" class="final-gif">
+</div>
+
+
+<script>
+let redSize = 120;
+let greenSize = 120;
+
+function shrinkRed() {
+    const red = document.getElementById("noBtn");
+    const green = document.getElementById("yesBtn");
+
+    // shrink red
+    redSize -= 15;
+
+    // grow green
+    greenSize += 25;
+
+    if (redSize <= 0) {
+        red.style.display = "none"; // vanish
+        green.style.width = "100%";
+        green.style.height = "100px";
+        green.style.left = "0";
+        green.style.bottom = "0";
+        return;
+    }
+
+    red.style.width = redSize + "px";
+    red.style.height = (redSize * 0.4) + "px";
+
+    green.style.width = greenSize + "px";
+    green.style.height = (greenSize * 0.4) + "px";
+}
+
+function sayYes() {
+    document.getElementById("card").style.display = "none";
+
+    const final = document.getElementById("finalScreen");
+    final.style.display = "flex"; // dito lang lalabas
+}
+</script>
+
+</body>
+</html>
